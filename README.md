@@ -1,59 +1,104 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+Tentu, Syawal! File `README.md` adalah wajah dari repositori GitHub kamu. Penilai (HRD/Technical Reviewer) biasanya akan membaca file ini terlebih dahulu sebelum melihat kode. Saya sudah menyusunnya secara profesional agar mencerminkan kualitas kerja yang tinggi.
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Berikut adalah isi lengkap file `README.md` yang disesuaikan dengan instruksi tugas Opsi B. Kamu tinggal membuat file baru bernama `README.md` di folder utama proyekmu, lalu *paste* kode di bawah ini:
 
-## About Laravel
+```markdown
+# BeDaie Sales AI - Sales Page Generator
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+BeDaie Sales AI adalah aplikasi berbasis web yang dirancang untuk membantu pemilik bisnis atau pemasar mengubah informasi produk/layanan mentah menjadi halaman penjualan (sales page) yang terstruktur dan persuasif menggunakan kecerdasan buatan (AI).
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Proyek ini dibangun sebagai bagian dari tugas teknis seleksi AI Developer di BeDaie.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 🚀 Teknologi Utama
 
-## Learning Laravel
+- **Backend:** Laravel 11 (PHP 8.2)
+- **Frontend:** React.js dengan Inertia.js
+- **Styling:** Tailwind CSS
+- **Database:** MySQL
+- **AI Engine:** Groq Cloud API (Model: llama-3.3-70b-versatile)
+- **Authentication:** Laravel Breeze
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+## ✨ Fitur Utama
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Aplikasi ini memenuhi seluruh persyaratan wajib dan bonus dalam instruksi tugas:
 
-## Laravel Sponsors
+1. **User Authentication:** Sistem registrasi dan login menggunakan Laravel Auth (Breeze).
+2. **Product Input Form:** Formulir terstruktur untuk input data produk (nama, deskripsi, fitur, target audiens, harga, dan USP).
+3. **AI Sales Page Generation:** Integrasi dengan LLM LLaMA 3.3 via Groq API untuk menghasilkan copywriting yang persuasif.
+4. **Saved Pages (CRUD):** Semua halaman yang dibuat tersimpan di database dan dapat dilihat kembali, diedit (generate ulang), maupun dihapus.
+5. **Live Preview:** Tampilan hasil AI dalam layout landing page yang nyata dan profesional.
+6. **Bonus - Multi-Design Templates:** Fitur untuk mengganti tema desain (Ungu, Biru, Hijau) secara real-time.
+7. **Bonus - Export HTML:** Fitur untuk mengunduh sales page sebagai file HTML standalone yang siap digunakan secara offline.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## 🛠️ Alur Kerja Sistem
 
-### Premium Partners
+1. **Input:** Pengguna memasukkan data produk melalui formulir React.
+2. **AI Processing:** Controller Laravel mengirimkan data tersebut ke Groq API dengan instruksi khusus (Prompt Engineering) untuk mengembalikan data dalam format JSON murni.
+3. **Data Extraction:** Sistem menggunakan Regex untuk memastikan validitas JSON dari AI sebelum disimpan ke database.
+4. **Storage:** Data mentah pengguna dan hasil copywriting AI disimpan ke dalam tabel `sales_pages`.
+5. **Rendering:** Inertia.js mengirimkan data ke komponen React untuk ditampilkan dalam layout landing page yang elegan.
+6. **Interaction:** Pengguna dapat mengganti gaya desain atau mengekspor kode ke format HTML melalui frontend.
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+## ⚙️ Instalasi Lokal
 
-## Contributing
+Ikuti langkah-langkah berikut untuk menjalankan proyek di lingkungan lokal:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+1. Clone repositori:
+   ```bash
+   git clone [https://github.com/syawal07/bedaie-sales-ai.git](https://github.com/syawal07/bedaie-sales-ai.git)
+   cd bedaie-sales-ai
+   ```
 
-## Code of Conduct
+2. Instal dependensi PHP:
+   ```bash
+   composer install
+   ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+3. Instal dependensi Node.js:
+   ```bash
+   npm install
+   ```
 
-## Security Vulnerabilities
+4. Salin file lingkungan (.env):
+   ```bash
+   cp .env.example .env
+   ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+5. Atur koneksi database dan API Key di file `.env`:
+   ```env
+   DB_DATABASE=nama_database_kamu
+   DB_USERNAME=root
+   DB_PASSWORD=
 
-## License
+   GROQ_API_KEY=your_groq_api_key_here
+   ```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+6. Generate aplikasi key dan jalankan migrasi:
+   ```bash
+   php artisan key:generate
+   php artisan migrate
+   ```
+
+7. Jalankan server pembangunan:
+   ```bash
+   # Terminal 1
+   php artisan serve
+
+   # Terminal 2
+   npm run dev
+   ```
+
+8. Akses aplikasi di `http://localhost:8000`.
+
+## 📄 Catatan Teknis
+
+- Aplikasi ini menggunakan **Modern Monolith Architecture** dengan Inertia.js, yang memberikan pengalaman Single Page Application (SPA) tanpa kerumitan pengaturan API yang terpisah.
+- Kecepatan generasi AI dioptimalkan menggunakan **LPU (Language Processing Unit)** dari Groq untuk hasil yang nyaris instan.
+- Desain UI/UX disesuaikan dengan identitas visual BeDaie menggunakan skema warna ungu yang elegan dan modern.
+
+---
+Dibuat oleh **Syawal Saputra** untuk Tugas Teknis BeDaie.
+```
+
+---
+
