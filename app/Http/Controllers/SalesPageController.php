@@ -64,7 +64,7 @@ public function store(Request $request)
             $aiContent = [
                 'headline' => 'Gagal Memproses AI',
                 'sub_headline' => 'Mohon generate ulang.',
-                'product_description' => 'Error API: ' . $response->body(),
+                'product_description' => 'Terjadi kesalahan format dari server.',
             ];
         }
 
@@ -148,7 +148,7 @@ public function store(Request $request)
             $aiContent = [
                 'headline' => 'Gagal Memproses AI',
                 'sub_headline' => 'Mohon generate ulang.',
-                'product_description' => 'Error API: ' . $response->body(),
+                'product_description' => 'Terjadi kesalahan format dari server.',
             ];
         }
 
