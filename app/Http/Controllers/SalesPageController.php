@@ -24,7 +24,7 @@ class SalesPageController extends Controller
         return Inertia::render('SalesPages/Create');
     }
 
-    public function store(Request $request)
+public function store(Request $request)
     {
         $validated = $request->validate([
             'product_name' => 'required|string|max:255',
@@ -44,10 +44,9 @@ class SalesPageController extends Controller
                   "USP: " . ($validated['unique_selling_points'] ?? '-') . "\n\n" .
                   "Return strictly a JSON object with these exact keys: " .
                   "headline, sub_headline, product_description, benefits, features_breakdown, pricing_display, call_to_action. " .
-                  "The keys 'benefits' and 'features_breakdown' MUST be arrays of strings. " .
-                  "Do not include any other text, no markdown, no greetings.";
+                  "The keys 'benefits' and 'features_breakdown' MUST be arrays of strings.";
 
-        $apiUrl = 'https://' . 'api.groq.com' . '/openai/v1/chat/completions';
+        $apiUrl = 'https://api.groq.com/openai/v1/chat/completions';
 
         $response = Http::withToken(env('GROQ_API_KEY'))
             ->post($apiUrl, [
@@ -56,19 +55,16 @@ class SalesPageController extends Controller
                     ['role' => 'user', 'content' => $prompt]
                 ],
                 'temperature' => 0.7,
+                'response_format' => ['type' => 'json_object']
             ]);
 
-        $rawContent = $response->json('choices.0.message.content');
+        $aiContent = json_decode($response->json('choices.0.message.content'), true);
 
-        preg_match('/\{[\s\S]*\}/', $rawContent, $matches);
-        $cleanJson = $matches[0] ?? '{}';
-        $aiContent = json_decode($cleanJson, true);
-
-        if (!$aiContent) {
+        if (!$aiContent || !isset($aiContent['headline'])) {
             $aiContent = [
                 'headline' => 'Gagal Memproses AI',
                 'sub_headline' => 'Mohon generate ulang.',
-                'product_description' => 'Terjadi kesalahan pembacaan format.',
+                'product_description' => 'Terjadi kesalahan format dari server.',
             ];
         }
 
@@ -132,31 +128,27 @@ class SalesPageController extends Controller
                   "USP: " . ($validated['unique_selling_points'] ?? '-') . "\n\n" .
                   "Return strictly a JSON object with these exact keys: " .
                   "headline, sub_headline, product_description, benefits, features_breakdown, pricing_display, call_to_action. " .
-                  "The keys 'benefits' and 'features_breakdown' MUST be arrays of strings. " .
-                  "Do not include any other text, no markdown, no greetings.";
+                  "The keys 'benefits' and 'features_breakdown' MUST be arrays of strings.";
 
-        $apiUrl = 'https://' . 'api.groq.com' . '/openai/v1/chat/completions';
+        $apiUrl = 'https://api.groq.com/openai/v1/chat/completions';
 
         $response = Http::withToken(env('GROQ_API_KEY'))
             ->post($apiUrl, [
-                'model' => 'mixtral-8x7b-32768',
+                'model' => 'llama-3.3-70b-versatile',
                 'messages' => [
                     ['role' => 'user', 'content' => $prompt]
                 ],
                 'temperature' => 0.7,
+                'response_format' => ['type' => 'json_object']
             ]);
 
-        $rawContent = $response->json('choices.0.message.content');
+        $aiContent = json_decode($response->json('choices.0.message.content'), true);
 
-        preg_match('/\{[\s\S]*\}/', $rawContent, $matches);
-        $cleanJson = $matches[0] ?? '{}';
-        $aiContent = json_decode($cleanJson, true);
-
-        if (!$aiContent) {
+        if (!$aiContent || !isset($aiContent['headline'])) {
             $aiContent = [
                 'headline' => 'Gagal Memproses AI',
                 'sub_headline' => 'Mohon generate ulang.',
-                'product_description' => 'Terjadi kesalahan pembacaan format.',
+                'product_description' => 'Terjadi kesalahan format dari server.',
             ];
         }
 
