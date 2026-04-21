@@ -139,7 +139,7 @@ class SalesPageController extends Controller
 
         $response = Http::withToken(env('GROQ_API_KEY'))
             ->post($apiUrl, [
-                'model' => 'llama-3.3-70b-versatile',
+                'model' => 'mixtral-8x7b-32768',
                 'messages' => [
                     ['role' => 'user', 'content' => $prompt]
                 ],
